@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Screenshot Frame — Beautiful Screenshots with Background, Shadow &amp; Window Frame | S3eidat Tools</title>
+<meta name="description" content="Paste a screenshot and make it look great for sharing: gradient background, padding, rounded corners, shadow, macOS window frame, 16:9 / 1:1 / 4:5 sizes. Export PNG at 2x or copy to clipboard. Free and private.">
+<meta property="og:title" content="Screenshot Frame — free, private screenshot beautifier">
+<meta property="og:description" content="Backgrounds, shadows and window frames for your screenshots. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="screenshot-frame">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Screenshot Frame</h1>
+    <p>Paste a screenshot (<kbd>Ctrl</kbd>+<kbd>V</kbd>) and make it look great: background, padding, rounded corners, shadow and a window frame. Nothing is uploaded.</p>
+  </section>
+
+  <div class="sf-grid">
+    <section class="card stack sf-left">
+      <label class="drop" id="drop">
+        <input type="file" accept="image/*" hidden>
+        <svg class="i"><use href="#i-image"/></svg>
+        <b>Paste a screenshot, drop it here, or click to choose</b>
+        <span class="faint">PNG, JPG, WebP. It stays on your device.</span>
+      </label>
+      <div id="editor" class="stack" hidden>
+        <div class="sf-stage checker" id="stage"><canvas id="cv" aria-label="Framed screenshot preview"></canvas></div>
+        <div class="row between">
+          <span class="faint" id="meta"></span>
+          <div class="row">
+            <button class="btn ghost small" id="newImg"><svg class="i"><use href="#i-upload"/></svg>New</button>
+            <button class="btn small" id="copy"><svg class="i"><use href="#i-copy"/></svg>Copy image</button>
+            <button class="btn primary small" id="dl"><svg class="i"><use href="#i-download"/></svg>Download PNG</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card stack sf-right">
+      <div class="field"><span>Background</span>
+        <div class="sf-bgs" id="bgs" role="group" aria-label="Background presets"></div>
+      </div>
+      <div class="row sf-custom">
+        <label class="field">From<input type="color" id="c1" value="#3dd6d0"></label>
+        <label class="field">To<input type="color" id="c2" value="#3b5bdb"></label>
+        <label class="field grow"><span>Angle <span class="faint" id="aLbl"></span></span><input type="range" id="angle" min="0" max="360" step="5" value="135"></label>
+      </div>
+      <label class="field"><span>Padding <span class="faint" id="pLbl"></span></span><input type="range" id="pad" min="0" max="30" value="8"></label>
+      <label class="field"><span>Corner radius <span class="faint" id="rLbl"></span></span><input type="range" id="radius" min="0" max="40" value="12"></label>
+      <label class="field"><span>Shadow <span class="faint" id="sLbl"></span></span><input type="range" id="shadow" min="0" max="100" value="55"></label>
+      <div class="field"><span>Window frame</span>
+        <div class="seg" id="frame" role="group" aria-label="Window frame">
+          <button aria-pressed="true" data-v="none">None</button>
+          <button aria-pressed="false" data-v="light">Light</button>
+          <button aria-pressed="false" data-v="dark">Dark</button>
+        </div>
+      </div>
+      <label class="field" id="titleWrap">Window title <input class="input" id="title" dir="auto" maxlength="80" placeholder="Optional, e.g. example.com"></label>
+      <div class="field"><span>Aspect</span>
+        <div class="seg" id="aspect" role="group" aria-label="Aspect ratio">
+          <button aria-pressed="true" data-v="auto">Auto</button>
+          <button aria-pressed="false" data-v="16:9">16:9</button>
+          <button aria-pressed="false" data-v="1:1">1:1</button>
+          <button aria-pressed="false" data-v="4:5">4:5</button>
+          <button aria-pressed="false" data-v="9:16">9:16</button>
+        </div>
+      </div>
+      <div class="field"><span>Export scale</span>
+        <div class="seg" id="scale" role="group" aria-label="Export scale">
+          <button aria-pressed="false" data-v="1">1x</button>
+          <button aria-pressed="true" data-v="2">2x</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
